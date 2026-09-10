@@ -1,0 +1,5 @@
+import type { Level } from '../type/game'
+type Props = { level: Level; correctCount: number; timeExpired: boolean; isPerfect: boolean; isFinalLevel: boolean; onRetry: () => void; onNext: () => void }
+export function LevelResult({ level, correctCount, timeExpired, isPerfect, isFinalLevel, onRetry, onNext }: Props) {
+  return <div className="modal-backdrop"><section className="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title"><span className={`result-icon ${isPerfect ? 'result-success' : ''}`}>{isPerfect ? '✓' : '!'}</span><p className="eyebrow">{isPerfect ? 'NIVEL SUPERADO' : timeExpired ? 'TIEMPO AGOTADO' : 'REVISA TUS CONEXIONES'}</p><h2 id="result-title">{isPerfect ? `¡Nivel ${level.id} completado!` : 'Aún puedes mejorar'}</h2><p>Has conectado correctamente <strong>{correctCount} de {level.items.length}</strong> símbolos.</p><div className="result-actions">{!isPerfect && <button className="button button-secondary" onClick={onRetry}>Intentar de nuevo</button>}{isPerfect && <button className="button button-primary" onClick={onNext}>{isFinalLevel ? 'Ver resultado final' : 'Siguiente nivel'}</button>}</div></section></div>
+}
