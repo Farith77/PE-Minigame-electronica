@@ -1,6 +1,11 @@
 import type { Level } from '../type/game'
 
-const item = (id: string, file: string, concept: string, description: string) => ({ id, image: `/images/${file}`, concept, description })
+const item = (id: string, file: string, concept: string, description: string) => ({
+  id,
+  image: `${import.meta.env.BASE_URL}images/${file}`,
+  concept,
+  description,
+})
 
 export const levels: Level[] = [
   { id: 1, title: 'Fundamentos', items: [
